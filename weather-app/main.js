@@ -3,7 +3,6 @@ const api = "60e3a46349f8783cb0e826472e041b6c";
 const iconImg = document.getElementById('weather-icon');
 const loc = document.querySelector('#location');
 const tempC = document.querySelector('.c');
-const tempF = document.querySelector('.f');
 const desc = document.querySelector('.desc');
 const sunriseDOM = document.querySelector('.sunrise');
 const sunsetDOM = document.querySelector('.sunset');
@@ -27,7 +26,6 @@ window.addEventListener("load", () => {
                 const { sunrise, sunset} = data.sys;
 
                 const iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
-                const fahrenheit = (temp * 9) / 5 + 32;
 
                 const sunriseGMT = new Date(sunrise * 1000);
                 const sunsetGMT = new Date(sunset * 1000);
@@ -35,11 +33,10 @@ window.addEventListener("load", () => {
                 iconImg.src = iconUrl;
                  loc.textContent = `${place}`;
                  desc.textContent = `${description}`;
-                 tempC.textContent = `${temp.toFixed(2)} °C`;
-                 tempF.textContent = `${fahrenheit.toFixed(2)} °F`;
+                 tempC.textContent = `${temp.toFixed(0)} °C`;
                  sunriseDOM.textContent = `${sunriseGMT.toLocaleDateString()}, ${sunriseGMT.toLocaleTimeString()}`;
                  sunsetDOM.textContent = `${sunsetGMT.toLocaleDateString()}, ${sunsetGMT.toLocaleTimeString()}`;
-        
+
             });
         });
     }
